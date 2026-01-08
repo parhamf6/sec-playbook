@@ -398,7 +398,7 @@ When we run it, we find the password for the next level.
 
 Password: `p5mCvP7GS2K6Bmt3gqhM2Fc1A5T8MVyw`
 
-# Level 20 — writeup (your style)
+# Level 20
 
 **What the level asks:** make the session contain `admin = 1` so the page treats you as an admin and prints the next-level password.
 
@@ -453,4 +453,3 @@ the loose comparison `"1" == 1` passes and you are treated as admin.
 The app **trusts user input** and stores it in a parseable format **without escaping**. That lets attackers inject structure (newlines → new keys) into persistent state. It’s a classic **session injection / improper serialization** bug.
 Visiting the payload URL gives the next level credentials:
 **Password for natas21:** `BPhv63cKE1lkQl04cE5CuFTzXe15NfiH`
-
