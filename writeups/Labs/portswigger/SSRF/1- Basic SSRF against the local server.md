@@ -1,0 +1,2 @@
+check the requests, find the stockapi.
+stockapi send a request to another url so we could replace that url with `http://localhost/admin` then in response we see that for deleting carlos we need to send request to `http://localhost/admin/delete?username=carlos`. so we change the stockapi URL to that and done.
