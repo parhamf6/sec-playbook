@@ -1,0 +1,1 @@
+most simple XSS just use `<script>alert(1)</script>`
