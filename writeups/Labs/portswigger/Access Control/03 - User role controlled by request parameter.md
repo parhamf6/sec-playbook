@@ -1,0 +1,2 @@
+so base on the guide you can go to admin panel by visiting `/admin` and the clue is in changing the cookie, its simple login, get a cookie, change to role to admin and done.
+more info go to storage, you would see an admin cookie and the value is false, change it to true and refresh the page then admin panel and poor Carlos is gone once again.
