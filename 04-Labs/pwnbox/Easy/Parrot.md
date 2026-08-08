@@ -1,3 +1,8 @@
+---
+tags:
+  - xss
+---
+
 https://pwnbox.io/challenges/parrot
 the idea is simple but finding the flag need few more steps. 
 first lets find out the payload. when you tell some that and parrot just repeat it if you check out the page source you can find out they put it exactly as you types, so you should check something simple like this :

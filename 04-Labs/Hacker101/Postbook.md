@@ -1,3 +1,10 @@
+---
+description: solving the Postbook on the Hacker101 CTF
+tags:
+  - xss
+  - idor
+---
+
 # Flag 0
 i tried to log in to the users account, based on the hint.
 for the user that has the username = user the password is password.

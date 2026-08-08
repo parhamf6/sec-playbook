@@ -1,3 +1,12 @@
+---
+description: solving the Natas wargame on the OverTheWire
+tags:
+  - recon
+  - access-control
+  - sql-injection
+  - brute-force
+---
+
 # Level 0
 
 Password was commented in the HTML source: `0nzCigAq7t2iALyvU9xcHlYN4MlkIwlq`
@@ -16,7 +25,7 @@ The comment "Google won't find it" is a hint to check `robots.txt`. When we look
 
 # Level 4
 
-Use intercept or request repeater to send a request with the referer header pointing to the wanted URL: `0n35PkggAPm2zbEpOU802c0x0Msn1ToK`
+Use intercept or request repeater to send a request with the referrer header pointing to the wanted URL: `0n35PkggAPm2zbEpOU802c0x0Msn1ToK`
 
 # Level 5
 

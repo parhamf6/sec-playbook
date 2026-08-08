@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 https://pwnbox.io/challenges/login-ledger
 The idea is simple we are dealing with a SQLi and this format first we most break it then fix it, this idea works for every Injection Attack.
 so we have some thing like this at first:

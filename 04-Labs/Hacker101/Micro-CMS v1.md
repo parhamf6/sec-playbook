@@ -1,3 +1,11 @@
+---
+title: Micro-CMS v1
+tags:
+  - sql-injection
+  - xss
+description: solving the Micro-CMS v1 on the Hacker101 CTF
+---
+
 # Flag 0
 for this based on the hint i created a page, nothing interesting, until i saw the id of the page, so i tested few pages from 0 to number of my own page that i created i get forbidden for one and two of them was just get open that mean they were public and other i get 404 so there are not there. in the forbidden one i tried to go to edit mode, i got to the edit mode on my own page then change the id and boom, the flag was there, simple IDOR.
 # Flag 1

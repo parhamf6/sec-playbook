@@ -1,3 +1,8 @@
+---
+tags:
+  - idor
+---
+
 https://pwnbox.io/challenges/loose-lips
 this one is kind of fun. IDOR and user session if you connect this dots, so you looking for some kind of Id in the user session.
 first login and look at the data.
