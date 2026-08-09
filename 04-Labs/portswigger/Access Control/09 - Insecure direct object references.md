@@ -1,3 +1,9 @@
+---
+tags:
+  - access-control
+  - idor
+---
+
 this is a classic IDOR, get access to a data that is not yours.
 based on the description, the user chat loges are stored in the server's file system and they have a static url.
 when we download a transcript if we capture HTTP request history we can see a request like this :

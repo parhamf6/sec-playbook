@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 This lab builds on the previous one. Now that I know how many columns the query returns, I need to figure out which columns can hold text data. This is important because I'll want to extract text information like usernames, passwords, and other sensitive data.
 
 ---

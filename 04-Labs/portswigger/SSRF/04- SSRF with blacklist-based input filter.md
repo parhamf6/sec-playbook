@@ -1,3 +1,8 @@
+---
+tags:
+  - ssrf
+---
+
 When we are dealing with **blacklists**, we already know that some addresses will not be allowed to be sent using the `stockApi` parameter.
 
 During testing, I found that `localhost` and `127.0.0.1` are blacklisted. Even when I only tried to add `/admin` to the URL, the request was blocked.  

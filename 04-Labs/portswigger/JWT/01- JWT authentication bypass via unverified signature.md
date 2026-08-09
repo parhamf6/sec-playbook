@@ -1,3 +1,9 @@
+---
+tags:
+  - access-control
+  - jwt
+---
+
 ### Token Analysis
 
 After logging in using the default credentials, the session cookie contains a JWT.

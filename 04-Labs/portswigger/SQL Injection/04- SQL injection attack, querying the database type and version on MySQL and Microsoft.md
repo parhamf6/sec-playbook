@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 This lab has a SQL injection vulnerability where we can use a UNION attack to get information from the database. The goal is to find out what database version is running.
 
 ---

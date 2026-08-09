@@ -1,3 +1,9 @@
+---
+tags:
+  - broken-access-control
+  - access-control
+---
+
 this idea work every where and its the first step :
 > Whenever I'm dealing with an Access Control challenge, I first go into **recon mode**. I don't start guessing vulnerabilities right away. Instead, I follow a simple checklist of places that commonly leak sensitive information.
 

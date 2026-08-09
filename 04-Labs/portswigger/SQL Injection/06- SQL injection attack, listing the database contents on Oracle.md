@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 This lab has a SQL injection vulnerability in an Oracle database. Oracle has some special rules - every SELECT statement needs a FROM clause, so we use a dummy table called `dual` when we're just testing.
 
 ---

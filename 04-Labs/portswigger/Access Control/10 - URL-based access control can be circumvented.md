@@ -1,3 +1,8 @@
+---
+tags:
+  - access-control
+  - idor
+---
 
 this one is quite interesting. so we have an admin panel at `/admin` but it's blocked for external users. the block seems to come from a front-end system, because the response is very plain and not like the normal app. the hint is that the back-end framework supports the `X-Original-URL` header. classic misconfiguration.
 

@@ -1,3 +1,9 @@
+---
+tags:
+  - access-control
+  - idor
+---
+
 this one is a little bit tricky. same idea we should some how get the info of Carlos in a redirect?
 first lets log in but at the same time have burp on and get every request.
 when we log in there is a good request:

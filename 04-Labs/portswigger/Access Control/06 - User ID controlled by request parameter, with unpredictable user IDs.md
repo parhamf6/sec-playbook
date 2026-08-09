@@ -1,3 +1,9 @@
+---
+tags:
+  - access-control
+  - idor
+---
+
 same idea as the last lab you most change the ID to access data that are for another user.
 when you logged in and go to my account page, in the url section you would see some thing like :
 `my-account?id=c77e40ed-da19-4939-987c-c8ad4733c7ed`

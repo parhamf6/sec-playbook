@@ -1,1 +1,6 @@
+---
+tags:
+  - ssrf
+---
+
 in this lab we can use intruder. its simple we send the stockapi request to intruder and change the last section of IP and test from 1 to 255. we can use this URL like `http://192.168.0.x` and x could be a number from 1 to 255. for faster solution we know that we should use this for deleting Carlos  `http://192.168.0.x/admin/delete?username=carlos` so we give this to intruder and it would solve it.

@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 This lab has a **blind SQL injection** vulnerability. That means I can inject SQL code, but I don't see the results directly - no error messages, no data displayed. The only clue I get is whether the query returns any rows or not.
 
 ---

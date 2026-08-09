@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 This lab teaches the first step of a UNION attack - figuring out how many columns a SQL query returns. This is important because for a UNION attack to work, our injected query must return exactly the same number of columns as the original query.
 
 ---

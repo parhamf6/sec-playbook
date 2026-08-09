@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 For this SQL injection lab, we're targeting an Oracle database. The key difference with Oracle is that **every SELECT statement must include a FROM clause**, unlike other databases. This means we need to use a special dummy table called `dual` during our testing phase.
 
 `dual` is a default Oracle table with one row and one column. It's perfect for testing queries when we don't actually need real data.

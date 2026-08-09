@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 This lab has a different type of blind SQL injection. This time, there's no visual feedback at all - no "Welcome back" message, no error messages, nothing changes on the page regardless of what my query does.
 
 But I can still exploit it by using **time delays**.

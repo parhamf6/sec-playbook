@@ -1,3 +1,8 @@
+---
+tags:
+  - access-control
+---
+
 > Whenever I'm dealing with an Access Control challenge, I first go into **recon mode**. I don't start guessing vulnerabilities right away. Instead, I follow a simple checklist of places that commonly leak sensitive information.
 
 - `robots.txt`

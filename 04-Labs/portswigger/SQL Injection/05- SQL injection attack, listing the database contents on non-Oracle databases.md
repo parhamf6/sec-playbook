@@ -1,3 +1,8 @@
+---
+tags:
+  - sql-injection
+---
+
 This lab has a SQL injection vulnerability where we need to find and extract login credentials from the database. The application has a login function, and there's a table somewhere in the database that stores usernames and passwords.
 
 ---
