@@ -5,4 +5,5 @@ tags:
   - jwt
   - broken-access-control
   - access-control
+  - auth-vuln
 ---
