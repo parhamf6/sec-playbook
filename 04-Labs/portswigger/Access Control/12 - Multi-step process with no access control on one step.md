@@ -4,7 +4,7 @@ tags:
 ---
 this is very simple, as the guide of the multi step vuln on the academy itself, this is clear.
 some times websites forgot to add protection in some steps of some actions.
-in this case, for the first step if you try to upgrade user with non admin user cookie, it would give you 403 but in the second step, it would let you to do it.
+in this case, for the first step if you try to upgrade user with non admin user cookie, it would give you 401 but in the second step, it would let you to do it.
 ```text
 POST /admin-roles HTTP/2
 Host: session-id.web-security-academy.net
